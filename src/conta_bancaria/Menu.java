@@ -44,7 +44,8 @@ public class Menu {
 			System.out.println("            6 - Realizar saque                       ");
 			System.out.println("            7 - Realizar depósito                    ");
 			System.out.println("            8 - Realizar trasnferência               ");
-			System.out.println("            9 - Encerrar sessão                      ");
+			System.out.println("            9 - Listar contas por titular            ");
+			System.out.println("            0 - Sair                                 ");
 			System.out.println("                                                     ");
 			System.out.println(" ═══════════════════════════════════════════════════ ");
 			System.out.println("─◇             Escolha a opção desejada:           ◇─");
@@ -52,7 +53,7 @@ public class Menu {
 					
 		opcao = leia.nextInt();
 		
-		if (opcao == 9) {
+		if (opcao == 0) {
 				System.out.println("\nBanco do Brasil com Z - O seu futuro começa aqui!\n");
 				sobre();
 				leia.close();
@@ -216,7 +217,12 @@ public class Menu {
 					break;
 				
 				case 9:
-					System.out.println("Encerrar sessão.\n\n");
+					System.out.println("Consultar constas por titular");
+					System.out.println("Digite o nome do titular:");
+					leia.skip("\\R");
+					titular = leia.nextLine();
+					
+					contas.listarPorTitular(titular);
 					
 					keyPress();
 					break;
