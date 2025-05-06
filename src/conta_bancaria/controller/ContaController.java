@@ -58,7 +58,7 @@ public class ContaController implements ContaRepository {
 
 		if (conta.isPresent()) {
 			if (listaContas.remove(conta.get()) == true)
-				;
+				
 			System.out.printf("\nA conta número %d foi excluída com sucesso!", numero);
 		} else
 			System.out.printf("\nA conta número %d não foi encontrada", numero);
@@ -67,15 +67,15 @@ public class ContaController implements ContaRepository {
 
 	@Override
 	public void sacar(int numero, float valor) {
-		// NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
+		NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
 
 		Optional<Conta> conta = buscarNaCollection(numero);
 
 		if (conta.isPresent()) {
 			if (conta.get().sacar(valor) == true)
-				System.out.printf("\nO saque no valor de %.2f, foi efetuado com sucesso na conta número %d", valor,
-						numero);
-		} else
+				System.out.printf("\nO saque no valor de %s, foi efetuado com sucesso na conta número %d", nfMoeda.format(valor), numero);
+			
+		}else 
 			System.out.printf("\nA conta número %d não foi encontrada", numero);
 	}
 
@@ -91,7 +91,7 @@ public class ContaController implements ContaRepository {
 			System.out.printf("\nO depósito no valor de %s, foi efetuado com sucesso na conta número %d",
 					nfMoeda.format(valor), numero);
 
-		} else
+		}else
 			System.out.printf("\nA conta número %d não foi encontrada", numero);
 
 	}
@@ -108,7 +108,7 @@ public class ContaController implements ContaRepository {
 				contaDestino.get().depositar(valor);
 				System.out.printf("\nA transferência no valor de %s, da conta número %d para a conta %d foi efetuado com sucesso", nfMoeda.format(valor), numeroOrigem, numeroDestino);
 			}
-		} else
+		}else
 			System.out.printf("\nA conta número %d não foi encontrada", numero);
 
 	}
